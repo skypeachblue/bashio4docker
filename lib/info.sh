@@ -27,16 +27,39 @@ function bashio::info() {
         return "${__BASHIO_EXIT_OK}"
     fi
 
-    if bashio::cache.exists 'info'; then
-        info=$(bashio::cache.get 'info')
-    else
-        info=$(bashio::api.supervisor GET /info false)
-        if [ "$?" -ne "${__BASHIO_EXIT_OK}" ]; then
-            bashio::log.error "Failed to get info from Supervisor API"
-            return "${__BASHIO_EXIT_NOK}"
-        fi
-        bashio::cache.set 'info' "${info}"
-    fi
+    # TODO: get actual info, somehow
+
+    # if bashio::cache.exists 'info'; then
+    #     info=$(bashio::cache.get 'info')
+    # else
+    #     info=$(bashio::api.supervisor GET /docker/info false)
+    #     if [ "$?" -ne "${__BASHIO_EXIT_OK}" ]; then
+    #         bashio::log.error "Failed to get info from Supervisor API"
+    #         return "${__BASHIO_EXIT_NOK}"
+    #     fi
+    #     bashio::cache.set 'info' "${info}"
+    # fi
+
+    info=$(cat << EOM
+{
+"supervisor": "300",
+"homeassistant": "0.117.0",
+"hassos": "5.0",
+"docker": "24.17.2",
+"hostname": "Awesome Hostname",
+"operating_system": "Home Assistant OS",
+"features": ["shutdown", "reboot", "hostname", "services", "hassos"],
+"machine": "ova",
+"arch": "amd64",
+"supported_arch": ["amd64"],
+"supported": true,
+"channel": "stable",
+"logging": "info",
+"state": "running",
+"timezone": "Europe/Brussels"
+}
+EOM
+)
 
     response="${info}"
     if bashio::var.has_value "${filter}"; then

@@ -46,8 +46,10 @@ function bashio::config() {
         end
 QUERY
 
-    options=$(bashio::addon.config)
-    result=$(bashio::jq "${options}" "${query}")
+    # TODO: add useful info here?
+    #options=$(bashio::addon.config)
+    #result=$(bashio::jq "${options}" "${query}")
+    result="null"
 
     if [[ "${result}" == "null" ]];
     then

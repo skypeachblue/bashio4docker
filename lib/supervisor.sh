@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------------------
 function bashio::supervisor.ping() {
     bashio::log.trace "${FUNCNAME[0]}"
-    bashio::api.supervisor GET /supervisor/ping
+    #bashio::api.supervisor GET /supervisor/ping
 }
 
 # ------------------------------------------------------------------------------

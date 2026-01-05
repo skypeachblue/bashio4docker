@@ -48,7 +48,7 @@ source "${__BASHIO_LIB_DIR}/fs.sh"
 source "${__BASHIO_LIB_DIR}/cache.sh"
 
 # shellcheck source=lib/addons.sh
-source "${__BASHIO_LIB_DIR}/addons.sh"
+#source "${__BASHIO_LIB_DIR}/addons.sh"
 # shellcheck source=lib/api.sh
 source "${__BASHIO_LIB_DIR}/api.sh"
 # shellcheck source=lib/audio.sh
